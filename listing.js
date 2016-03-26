@@ -11,5 +11,4 @@ fs.readdir(process.argv[2], (err, list) => {
             console.log(list[i]);
         }
     }
-    //console.log(filtered);
 })

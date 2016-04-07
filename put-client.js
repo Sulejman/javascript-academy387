@@ -2,15 +2,16 @@ var http = require('http');
 var querystring = require('querystring');
 
 var putData = querystring.stringify({
-  'id' : '3',
-  'firstName' : 'Neko',
-  'lastName': 'Neki'
+  'firstName' : 'Neki',
+  'lastName': 'Neko'
 });
+
+var id = 2;
 
 var options = {
   hostname: 'www.sule.io',
   port: 1337,
-  path: `/user`,
+  path: `/user/${id}`,
   method: 'PUT',
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded',

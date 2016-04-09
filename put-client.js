@@ -41,20 +41,9 @@ req.on('error', (e) => {
 req.write(putData);
 req.end();*/
 
-function editUser(id, firstName, lastName, DOB, gitUsername ){
-    
-    var body = {};
-   
-    if(firstName!=undefined)
-        body.firstName = firstName;
-    if(lastName!=undefined)
-        body.lastName = lastName;
-    if(gitUsername!=undefined)
-        body.gitUsername = gitUsername;
-    if(DOB!=undefined)
-        body.DOB = DOB;
+function editUser(id, user){
         
-    var putData = querystring.stringify(body);
+    var putData = querystring.stringify(user);
     
     var options = {
         hostname: 'www.sule.io',
@@ -69,19 +58,20 @@ function editUser(id, firstName, lastName, DOB, gitUsername ){
 
     var req = http.request(options, (res) => {
         console.log(`STATUS: ${res.statusCode}`);
-        console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+        //console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
         res.setEncoding('utf8');
         res.on('data', (chunk) => {
-            console.log(`BODY: ${chunk}`);
+            //console.log(`BODY: ${chunk}`);
         });
         res.on('end', () => {
             console.log('No more data in response.')
-            return res;
         })
+        
+        return querystring.stringify(res);
     });
 
     req.on('error', (e) => {
-        console.log(`problem with request: ${e.message}`);
+        //console.log(`problem with request: ${e.message}`);
         return e;
     });
 
@@ -91,6 +81,10 @@ function editUser(id, firstName, lastName, DOB, gitUsername ){
     
 }
 
+var user = {
+    gitUsername : "NekiGit"
+}
+
 //proba:
-console.log(editUser(id=2,firstName =  "Zmaj"));
+console.log(editUser(id=2, user));
 

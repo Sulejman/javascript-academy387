@@ -2,16 +2,18 @@ var http = require('http');
 var querystring = require('querystring');
 
 var postData = querystring.stringify({
-  'firstName' : "Sulejman",
-  'lastName' : 'Sarajlija',
-  'DOB' : '1993-06-09',
-  'gitUsername': 'Sulejman'
+  'brand' : "Mercedes",
+  'manufacturer' : 'Mercedes',
+  'color' : 'blue',
+  'seatNumber': 5,
+  'transmission':'Manual',
+  'owner' : 1
 });
 
 var options = {
-  hostname: 'www.sule.io',
+  hostname: 'localhost',
   port: 1337,
-  path: `/user`,
+  path: `/car/createCarWithOwner`,
   method: 'POST',
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded',
